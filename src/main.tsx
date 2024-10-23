@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { neobrutalism } from "@clerk/themes";
+import { ThemeProvider } from "@/components/main/theme-provider.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -13,14 +14,16 @@ if (!PUBLISHABLE_KEY) {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ClerkProvider
-      appearance={{
-        baseTheme: neobrutalism,
-        signIn: { baseTheme: neobrutalism },
-      }}
-      publishableKey={PUBLISHABLE_KEY}
-      afterSignOutUrl="/">
-      <App />
-    </ClerkProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ClerkProvider
+        appearance={{
+          baseTheme: neobrutalism,
+          signIn: { baseTheme: neobrutalism },
+        }}
+        publishableKey={PUBLISHABLE_KEY}
+        afterSignOutUrl="/">
+        <App />
+      </ClerkProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
