@@ -22,10 +22,10 @@ function Landing() {
         {/* Button */}
         <div className="flex mt-5 justify-center items-center gap-x-4 flex-wrap">
           <Link to="/jobs">
-            <Button>پیدا کردن شغل </Button>
+            <Button> جستجوی شغل </Button>
           </Link>
           <Link to="/post-jobs">
-            <Button variant="destructive">افزودن شغل</Button>
+            <Button variant="destructive">ثبت شغل</Button>
           </Link>
         </div>
       </div>

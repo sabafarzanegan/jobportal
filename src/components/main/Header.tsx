@@ -3,9 +3,12 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
+  useUser,
 } from "@clerk/clerk-react";
 import logo from "../../../public/images/logo (1).png";
 import { Button } from "../ui/button";
+import { BriefcaseBusiness } from "lucide-react";
+import { Save } from "lucide-react";
 
 function Header() {
   return (
@@ -15,12 +18,35 @@ function Header() {
       </div>
       <div>
         <SignedOut>
-          <SignInButton mode="modal">
+          <SignInButton
+            signUpForceRedirectUrl="/onboarding"
+            fallbackRedirectUrl="/onboarding"
+            mode="modal">
             <Button variant="default">ورود</Button>
           </SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10 rounded-full",
+              },
+            }}>
+            <UserButton.MenuItems>
+              <UserButton.Link
+                label="شغل های من"
+                href="/my-jobs"
+                labelIcon={<BriefcaseBusiness />}
+              />
+            </UserButton.MenuItems>
+            <UserButton.MenuItems>
+              <UserButton.Link
+                label="شغل های ذخیره شده"
+                href="/save-jobs"
+                labelIcon={<Save />}
+              />
+            </UserButton.MenuItems>
+          </UserButton>
         </SignedIn>
       </div>
     </div>

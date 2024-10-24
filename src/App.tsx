@@ -7,19 +7,61 @@ import Singlepage from "./page/Singlepage";
 import Postjob from "./page/Postjob";
 import Myjob from "./page/Myjob";
 import Savejob from "./page/Savejob";
+import PrivateRoute from "./page/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
       { element: <Landing />, path: "/" },
-      { element: <Onboarding />, path: "/onboarding" },
-      { element: <Onboarding />, path: "/onboarding" },
-      { element: <Joblist />, path: "/jobs" },
-      { element: <Singlepage />, path: "/jobs/:id" },
-      { element: <Postjob />, path: "/post-jobs" },
-      { element: <Myjob />, path: "/my-jobs" },
-      { element: <Savejob />, path: "/save-jobs" },
+      {
+        element: (
+          <PrivateRoute>
+            <Onboarding />
+          </PrivateRoute>
+        ),
+        path: "/onboarding",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <Joblist />
+          </PrivateRoute>
+        ),
+        path: "/jobs",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <Singlepage />
+          </PrivateRoute>
+        ),
+        path: "/jobs/:id",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <Postjob />
+          </PrivateRoute>
+        ),
+        path: "/post-jobs",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <Myjob />
+          </PrivateRoute>
+        ),
+        path: "/my-jobs",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <Savejob />
+          </PrivateRoute>
+        ),
+        path: "/save-jobs",
+      },
     ],
   },
 ]);
